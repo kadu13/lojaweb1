@@ -15,8 +15,9 @@ def registrar():
     if request.method == 'POST' and form.validate():
         hash_password = bcrypt.generate_password_hash(form.password.data)
         user = User(name=form.name.data, username=form.username.data, email=form.email.data,
-                    passwod=hash_password)
-        db.session.add()
+        passwod=hash_password)
+        db.session.add(user)
         flash('Obrigado por registrar')
         return redirect(url_for('login'))
-    return render_template('admin/registrar.html', form=form, title="Pagina de Registros")
+    return render_template('admin/registrar.html', form=form, title="Pagina de registros")
+
